@@ -20,4 +20,15 @@ public class CitiesController {
                                     @RequestParam String country) {
         return servCity.getCitiesHotels(name, country);
     }
+
+    //Creo un endpoint para devolver el pais segun el nombre que está buscando en las ciudades
+    @GetMapping("/country")
+    public String getCountryByCityName(@RequestParam String name) {
+        CityDTO cityDTO = servCity.getCitiesHotels(name, "");
+        if (cityDTO != null) {
+            return cityDTO.getCountry();
+        } else {
+            return "Ciudad no encontrada";
+        }
+    }
 }

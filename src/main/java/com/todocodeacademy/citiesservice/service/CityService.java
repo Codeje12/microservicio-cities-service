@@ -86,4 +86,18 @@ public class CityService implements ICityService{
     public void createException(){
         throw new IllegalArgumentException("Prueba Resilencie  y circuit breaker");
     }
+
+
+
+    //Creo un metodo para buscar una city y devolce su pais
+    public String getCountryByCityName(String name) {
+        this.loadCities();
+        for (City c:cities) {
+            if (c.getName().equalsIgnoreCase (name)) {
+                return c.getCountry();
+            }
+
+        }
+        return null;
+    }
 }
